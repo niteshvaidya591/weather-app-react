@@ -45,6 +45,7 @@
   bottom: 0;
   transform: translate(-48%, -43%);
   z-index: -1;
+  display: none;
 }
 .loader span {
   position: relative;
