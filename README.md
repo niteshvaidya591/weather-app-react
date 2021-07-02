@@ -28,7 +28,9 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
+### npm run deploy
+The site is deployed into the URL (Live demo)[https://niteshvaidya591.github.io/weather-app-react/]
+change the target URL in the package.json file "homepage":"YOUR_URL"
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**

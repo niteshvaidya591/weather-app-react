@@ -1,20 +1,27 @@
 import "./App.css";
 import Climate from "./Climate";
 import React from "react";
+import Loader from './Loader'
 import CurrentCondition from "./CurrentCondition";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { place: "bangalore", info: [], error: "" };
+    this.state = {
+      place: "bangalore", info: [], error: "", loading: false
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.callApi = this.callApi.bind(this);
   }
-
-  componentDidMount() {
-    //  this.handleSubmit();
+  hideLoader = () => {
+    this.setState({ loading: false });
   }
+
+  showLoader = () => {
+    this.setState({ loading: true });
+  }
+
   handleChange(e) {
     this.setState({ place: e.target.value });
   }
@@ -30,6 +37,8 @@ class App extends React.Component {
   }
 
   callApi() {
+    const _this = this;
+    this.showLoader();
     // Simple POST request with a JSON body using fetch
     const requestOptions = {
       method: "POST",
@@ -38,12 +47,13 @@ class App extends React.Component {
     };
     fetch("https://weather591.herokuapp.com/weather/place", requestOptions)
       .then((response) => response.json())
-      .then((data) => this.setState({ info: data }));
+      .then((data) => { this.setState({ info: data }); _this.hideLoader(); });
     this.setState({ error: "" });
   }
   render() {
     return (
       <div id="weatherApp">
+        {(this.state.loading) ? <Loader /> : null}
         <h1>Weather App</h1>
         <form onSubmit={this.handleSubmit}>
           <label htmlFor="weatherSearch">

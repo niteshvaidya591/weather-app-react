@@ -104,3 +104,8 @@ table#weatherClimate {
     min-width: 100px;
   }
 }
+.loader{
+  width:100px;
+  height: 100px;
+  background-color: red;
+}
